@@ -6,6 +6,7 @@
 //Transaction
 //javax.sql.RowSet
 //
+
 //Working with Large Objects (BLOB And CLOB)
 //==========================================
 //Sometimes as the part of programming requirement,we have to insert and retrieve
@@ -14,11 +15,13 @@
 //Eg:upload image in matrinomial web sites
 //     upload resume in job related web sites
 //
+
 //To store and retrieve large information we should go for Large Objects(LOBs).
 //There are 2 types of Large Objects.
 //1. Binary Large Object (BLOB)
 //2. Character Large Object (CLOB)
 //
+
 //1) Binary Large Object (BLOB)
 //    A BLOB is a collection of binary data stored as a single entity in the
 //database.
@@ -26,6 +29,7 @@
 //    BLOB datatype can store maximum of "4GB" binary data.
 //            eg: sachin.jpg
 //
+
 //2) CLOB (Character Large Objects):
 //    A CLOB is a collection of Character data stored as a single entity in the
 //database.
@@ -33,6 +37,7 @@
 //    CLOB Type can store maximum of 4GB data.
 //            eg: resume.txt
 //
+
 //Steps to insert BLOB type into database:
 //
 //1. create a table in the database which can accept BLOB type data.
@@ -56,6 +61,7 @@
 //      pst.executeUpdate();
 //
 //
+
 //Steps to Retrieve BLOB type from Database
 //==========================================
 //1. Prepare ResultSet object with BLOB type
@@ -84,6 +90,7 @@
 //           fos.write(b);
 //       }
 //
+
 //CLOB (Character Large Objects)
 //   A CLOB is a collection of Character data stored as a single entity in the
 //database.
@@ -100,6 +107,7 @@
 //public void setCharacterStream(int index,Reader r,long length) throws SQLException
 //
 //
+
 //Retrieving CLOB Type from Database:
 //All steps are exactly same as BLOB, except the following differences..
 //1. Instead of using FileOutputStream,we have to use FileWriter
@@ -115,6 +123,7 @@
 //                 refer: BlobApp,ClobApp
 //
 //
+
 //Connection Pooling
 //================
 //=> If we required to communicate with database multiple times then it is not
@@ -138,6 +147,7 @@
 //object multiple
 //    times, so that overall performance of application will be improved.
 //
+
 //Process to implement Connection Pooling:
 //
 //1. Creation of DataSource object
@@ -176,6 +186,7 @@
 //     and existing Connection object will be returned from Connection Pool.
 //                refer: ConnectionPoolingApp
 //
+
 //StoredProcedure
 //==============
 //In our program,if we have any code which is repeatedly required, then we write that
