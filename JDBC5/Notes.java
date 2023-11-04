@@ -1,8 +1,3 @@
-//
-//public class Test {
-//
-//}
-
 //Transaction Management in JDBC
 //===============================
 //=> Process of combining all related operations into a single unit and executing on
