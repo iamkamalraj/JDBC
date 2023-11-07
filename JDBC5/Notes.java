@@ -76,7 +76,7 @@ completed by using rollback() method.
 
 Program to demonstrate Transaction app
 
-
+---------------------------------------------------------------------------------------------------------------------------------------
 Savepoint(I)
 ============
 => Savepoint is an interface present in java.sql package.
