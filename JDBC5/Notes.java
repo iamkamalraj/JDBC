@@ -77,6 +77,7 @@ completed by using rollback() method.
 Program to demonstrate Transaction app
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+    
 Savepoint(I)
 ============
 => Savepoint is an interface present in java.sql package.
@@ -237,6 +238,7 @@ ResultSet(holds the data which is used for reading purpose)
 but not recomended)
 
 ---------------------------------------------------------------------------------------------------------------------
+    
 RowSet(ALL DB vendors jar support for RowSet is not available)
 =================================================
 => It is alternative to ResultSet.
@@ -282,3 +284,7 @@ How to create RowSet objects?
        WebRowSet wrs = rsf.createWebRowSet();
        JoinRowSet jnrs = rsf.createJoinRowSet();
        FilteredRowSet frs = rsf.createFilteredRowSet();
+
+---------------------------------------------------------------------------------------------------------------------
+
+
