@@ -235,3 +235,50 @@ ResultSet(holds the data which is used for reading purpose)
       |=> Using resultset we have just performed read operation(best suited)
       |=> Is it possible to perform update,inserte and delete operation(possible
 but not recomended)
+
+---------------------------------------------------------------------------------------------------------------------
+RowSet(ALL DB vendors jar support for RowSet is not available)
+=================================================
+=> It is alternative to ResultSet.
+=> We can use RowSet to handle a group of records in more effective way than
+ResultSet.
+=> RowSet interface present in javax.sql package
+=> RowSet is child interface of ResultSet.
+=> RowSet implementations will be provided by Java vendor and database vendor.
+=> By default RowSet is scrollable and updatable.
+=> By default RowSet is serializable and hence we can send RowSet object across the
+network. But
+      ResultSet object is not serializable.
+=> ResultSet is connected i.e to use ResultSet compulsary database Connection must
+be required.
+=> RowSet is disconnected. ie to use RowSet database connection is not required.
+
+Types of RowSets
+================
+There are two types of RowSets
+1. Connected RowSets
+2. Disconnected RowSets
+
+Connected RowSets
+=================
+Connected RowSets are just like ResultSets.
+To access RowSet data compulsary connection should be available to database.
+We cannot serialize Connected RowSets.
+Eg: JdbcRowSet
+
+Disconnected RowSets:
+Without having Connection to the database we can access RowSet data.
+We can serialize Disconnected RowSets.
+Eg:
+ CachedRowSet
+ WebRowSet
+    a.FilteredRowSet
+    b.JoinRowSet
+How to create RowSet objects?
+  We can create different types of RowSet objects as follows
+       RowSetFactory rsf = RowSetProvider.newFactory();
+       JdbcRowSet jrs = rsf.createJdbcRowSet();
+       CachedRowSet crs = rsf.createCachedRowSet();
+       WebRowSet wrs = rsf.createWebRowSet();
+       JoinRowSet jnrs = rsf.createJoinRowSet();
+       FilteredRowSet frs = rsf.createFilteredRowSet();
