@@ -287,4 +287,51 @@ How to create RowSet objects?
 
 ---------------------------------------------------------------------------------------------------------------------
 
+JdbcRowSet
+==========
+  => It is exactly same as ResultSet except that it is scrollable and updatable.
+  => JdbcRowSet is connected and hence to access JdbcRowSet compulsary Connection
+must be
+     required.
+  => JdbcRowSet is non serializable and hence we cannot send RowSet object across
+the network.
+
+Note:
+     jdbcRowSet.setUrl("jdbc:mysql:///abc");
+     jdbcRowSet.setUser("root");
+     jdbcRowSet.setPassword("root123");
+     jdbcRowSet.setCommand("select eid,ename,esal,eaddress from employee");
+     jdbcRowSet.execute();
+
+
+Application to demonstrate
+      1. Retreive records from jdbcRowSet
+      2. Insert records into jdbcRowSet
+      3. Update record into jdbcRowSet
+      4. delete record into jdbcRowSet
+
+
+CachedRowSet:
+=> It is the child interface of RowSet.
+=> It is bydefault scrollable and updatable.
+=> It is disconnected RowSet. ie we can use RowSet without having database
+connection.
+=> It is Serializable.
+=> The main advantage of CachedRowSet is we can send this RowSet object for
+multiple people
+   across the network and all those people can access RowSet data without having
+DBConnection.
+=> If we perform any update operations(like insert,delete and update) to the
+CachedRowSet,to
+   reflect those changes compulsary Connection should be established.
+=> Once Connection established then only those changes will be reflected in
+Database.
+
+Application to demonstrate
+      1. Retreive records from CachedRowSet
+      2. Insert records from CachedRowSet
+      3. Update record from CachedRowSet
+      4. delete record from CachedRowSet
+
+---------------------------------------------------------------------------------------------------------------------
 
