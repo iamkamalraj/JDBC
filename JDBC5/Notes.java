@@ -385,3 +385,121 @@ applications.
 => We can read XML data into RowSet as follows
       FileReader fr=new FileReader("emp.xml");
       rs.readXml(fr);
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+selecting the records
+=====================
+ 1. rs.setCommand("select eid,ename,esal,eaddr from emp");
+ 2. rs.execute();
+ 3. FileWriter fw=new FileWriter("emp.xml");
+ 4. rs.writeXml(fw);
+ 5. rs.acceptChanges()
+
+inserting the records
+=====================
+ 1. rs.setCommand("select eid,ename,esal,eaddr from emp");
+ 2. rs.execute();
+ 3. FileReader fr=new FileReader("input.xml");
+ 4. rs.readXml(fr);
+ 5. rs.acceptChanges()
+
+input.xml
+=========
+<data>
+   <insertRow>
+       <columnValue>11</columnValue>
+       <columnValue>dupples</columnValue>
+       <columnValue>RCB</columnValue>
+       <columnValue>45</columnValue>
+   </insertRow>
+</data>
+
+deleting the records
+=====================
+ 1. rs.setCommand("select eid,ename,esal,eaddr from emp");
+ 2. rs.execute();
+ 3. FileReader fr=new FileReader("input.xml");
+ 4. rs.readXml(fr);
+ 5. rs.acceptChanges()
+
+input.xml
+=========
+<data>
+   <deleteRow>
+       <columnValue>11</columnValue>
+       <columnValue>dupples</columnValue>
+       <columnValue>RCB</columnValue>
+       <columnValue>45</columnValue>
+   </deletRow>
+</data>
+
+JoinRowSet:
+==========
+=> It is the child interface of WebRowSet.
+=> It is by default scrollable and updatable
+=> It is disconnected and serializable
+=> If we want to join rows from different rowsets into a single rowset based on
+matched
+   column(common column) then we should go for JoinRowSet.
+=> We can add RowSets to the JoinRowSet by using addRowSet() method.
+    addRowSet(RowSet rs,int commonColumnIndex);
+
+eg#1.
+  CachedRowSet crs1=rsf.createCachedRowSet();
+  crs1.setCommand("select sid,sname,saddr,cid from student");
+  crs1.exeucte(con);
+
+  CachedRowSet crs2=rsf.createCachedRowSet();
+  crs2.setCommand("select cid,cname,cost from course");
+  crs2.execute(con);
+
+  JoinRowSet jrs=rsf.joinRowSet();
+  rs.addRowSet(crs1,4);
+  rs.addRowSet(crs2,1);
+
+  //process the resultSet
+
+
+FilteredRowSet(I):
+=================
+=> It is the child interface of WebRowSet.
+=> If we want to filter rows based on some   condition then we should go for
+FilteredRowSet.
+      public interface FilteredRowSet{
+            public boolean evaluate(RowSet   rs);//for filtering logic
+            public boolean evaluate(Object   obj,int colIndex);//for insertion of
+record
+            public boolean evaluate(Object   obj,String colName);//for insertion of
+record
+      }
+
+Note:
+public boolean evaluate(RowSet rs){
+      try {
+            String colValue = rs.getString(colName);
+           if (colValue.startsWith(condValue)) {
+                 return true;
+           } else {
+                 return false;
+           }
+           } catch (SQLException e) {
+                 e.printStackTrace();
+           }
+
+       }
+}
+
+Behind the scenes
+=================
+for every rs.next(), the entire record will be pulled and it will be given to
+RowSet(rs)
+so from RowSet(rs) we need to get the ColValue based on ColName.
+check the colValue with our condValue,if it matches return true, if it is true then
+that particular row will be available in rowSet.if not that rowSet will not be
+availabe for rendering.
+
